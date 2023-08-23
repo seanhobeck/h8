@@ -21,7 +21,7 @@ typedef struct node_t {
 char *filter(char *__restrict str);
 /// @note: Allocates the destination and then copys the source data.
 void s_alloc_cpy(char **__restrict dst, char *__restrict src);
-void n_alloc_cpy(struct node_t *__restrict dst, struct node_t src);
+void n_alloc_cpy(struct node_t **__restrict dst, struct node_t src);
 
 /*            @section: External Functions             */
 

@@ -22,10 +22,10 @@ void s_alloc_cpy(char **__restrict dst, char *__restrict src) {
   if (src != 0)
     strcpy(*dst, src);
 };
-void n_alloc_cpy(struct node_t *__restrict dst, struct node_t src) {
-  dst = (struct node_t *)calloc(1ul, sizeof(struct node_t));
+void n_alloc_cpy(struct node_t **__restrict dst, struct node_t src) {
+  *dst = (struct node_t *)calloc(1ul, sizeof(struct node_t));
   if (&src != 0)
-    *dst = src;
+    **dst = src;
 };
 
 
@@ -44,7 +44,7 @@ extern struct node_t *get_lex_tokens(const char *__restrict p_filename) {
 
   /// Reading by each line.
   char *s = 0;
-  unsigned long l = 0, n = 0;
+  unsigned long l = 1, n = 0;
   while (getline(&s, &n, fptr) != -1) {
     /// Splitting string by space.
     char *t = strtok(s, " ");
@@ -60,14 +60,14 @@ extern struct node_t *get_lex_tokens(const char *__restrict p_filename) {
         /// Finding the last node.
         struct node_t o = list;
         if (list.p_next == 0) {
-          n_alloc_cpy(list.p_next, node);
+          n_alloc_cpy(&list.p_next, node);
           goto el;
         }
         struct node_t *u = &o;
         while (u->p_next != 0) {
           u = u->p_next;
           if (u->p_next == 0) {
-            n_alloc_cpy(u->p_next, node);
+            n_alloc_cpy(&u->p_next, node);
             list = o;
             break;
           }
