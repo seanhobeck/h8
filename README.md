@@ -6,7 +6,7 @@ for fun and for practice.
 
 ## instruction set
 
-    1: mov imm16/reg, imm16/reg ; moving data from or to registers & memory.
+    1: mov imm16/reg, imm16/reg     ; moving data from or to registers & memory.
     2: lda imm16, imm8/reg		; loading data into a register.
     3: add imm16/reg, imm8/reg	; addition with registers & memory.
     4: sub imm16/reg, imm8/reg	; subtraction with register & memory.
@@ -15,8 +15,8 @@ for fun and for practice.
     7: not imm16/reg, imm8/reg	; bitwise 'not' operator for registers & memory.
     8: and imm16/reg, imm8/reg	; bitwise 'and' operator for registers & memory.
     9: jc flag, imm16/reg   	; jumping under a flagged condition to a instruction.
-    A: hlt 						; halting the program
-    B: out imm8/reg				; stdout a register or the value in memory.
+    A: hlt 				; halting the program
+    B: out imm8/reg			; stdout a register or the value in memory.
 ## architecture
 
 the h8 processor has around 32kb of memory, ranging from [0x0000 - 0x7FFF].
