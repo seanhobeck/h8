@@ -20,5 +20,5 @@ for fun and for practice.
 
 ## architecture
 
-the h8 processor has around 32kb of memory, ranging from [0x0000 - 0x7FFF].
+the h8 processor has around 65kb of memory, ranging from [0x0000 - 0x7FFF].
    unlike other 8-bit and modern processors, h8 has direct access to the *%ip (instruction pointer)*, *%ax (return address register)*, *zf (zero flag), cf (carry flag), gf(greater-then flag), lf(less-then flag), and sf(signed-flag)*.

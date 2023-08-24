@@ -9,7 +9,7 @@
 /*                  @section: Data                     */
 
 /// @note: The emulators memory.
-extern unsigned char memory[32768];
+extern unsigned char memory[65536];
 
 /*            @section: Utility Functions              */
 
