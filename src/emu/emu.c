@@ -18,7 +18,7 @@ extern unsigned char memory[0x7FFF];
 /*            @section: Utility Functions              */
 
 /// @note: Loading data into a memory location.
-void load_memd(unsigned short loc, unsigned char data) { assert(memory != 0); memory[loc] = data; };
+void load_memd(unsigned short loc, unsigned char data) { assert(&memory != 0); memory[loc] = data; };
 /// @note: Getting the data a the memory location.
 unsigned char get_memd(unsigned short loc) { assert(memory != 0); return memory[loc]; };
 /// @note: Getting the instruction name from a string.
@@ -44,6 +44,17 @@ extern void emulate_data(const struct node_t list)
     /// The returned instruction tree.
     struct instruction_t r;
     
+    /// The previous line / instruction pointer.
+    unsigned long p_ip;
+
     /// Getting the iterator.
     struct node_t it = list;
+    while (it.p_next != 0)
+    {
+
+        /// Making the next iterator the first token on a new line.
+        while (it.p_next->m_line == p_ip)
+            it = *it.p_next;
+        p_ip = it.m_line;
+    }
 };
