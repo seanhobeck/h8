@@ -1,6 +1,6 @@
 CC=gcc 
 TARGET=h8
-SOURCES=src/main.c src/lex/lex.c
+SOURCES=src/main.c src/lex/lex.c src/emu/emu.c
 CFLAGS=-g -Wall
 LFLAGS=-std=c11
 

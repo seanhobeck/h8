@@ -1,6 +1,6 @@
 /*
     @author: Sean Hobeck
-      @date: 08/24/23
+      @date: 08/26/23
  */
 #pragma once
 
@@ -10,12 +10,20 @@
 /// @uses: bool
 #include <stdbool.h>
 
+/*                  @section: Data                */
+
 /// @note: enumerator for all of the instructions.
-enum e_instruction : signed { MOV = 0x0, LDA,ADD,SUB,CMP,OR,NOT,AND,JC,HLT,OUT };
+enum e_instruction {
+  MOV = 0x0,LDA,ADD,SUB,CMP,OR,NOT,AND,JC,HLT,OUT
+};
 /// @note: enumerator for all of the registers.
-enum e_register : signed { R1 = 0x0,R2,R3,R4,R5,AX,IP };
+enum e_register {
+  R1 = 0x0, R2, R3, R4, R5, AX, IP
+};
 /// @note: enumerator for all of the flags.
-enum e_flag : signed { ZF = 0x0,CF,GF,LF,SF };
+enum e_flag {
+  ZF = 0x0, CF, GF, LF, SF
+};
 
 /*          @section: Emulator Functions           */
 
@@ -24,22 +32,23 @@ void load_memd(unsigned short loc, unsigned char data);
 /// @note: Getting the data from a memory location.
 unsigned char get_memd(unsigned short loc);
 /// @note: Getting the instruction from a string.
-signed get_inst(const char* p_str);
+signed get_inst(const char *p_str);
 
 /*          @section: Emulator Structure           */
 
 typedef struct instruction_t {
   /// Enumerated Type of instruction.
-  signed inst = -1;
+  signed inst;
   /// Grouped data; xx xx, xx (for a grouped instruction).
-  char** data;
-
-  /// Constructor for initialization.
-  instruction_t() { data = (char**) calloc(3ul, 256ul); };
+  char *data[3];
 
   /// The next instruction in the list.
-  struct instruction_t* p_next;
+  struct instruction_t *p_next;
 };
+
+/// @note: Allocating and copying data to the "instruction_t" data structure.
+void i_alloc_cpy(struct instruction_t **__restrict ptr,
+                 struct instruction_t cpy);
 
 /*            @section: External Functions         */
 

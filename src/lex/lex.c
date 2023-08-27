@@ -1,6 +1,6 @@
 /*
     @author: Sean Hobeck
-      @date: 08/23/23
+      @date: 08/26/23
  */
 #include "lex.h"
 
@@ -34,7 +34,7 @@ void n_alloc_cpy(struct node_t **__restrict dst, struct node_t src) {
 
 
 
-extern struct node_t *get_lex_tokens(const char *__restrict p_filename) {
+extern struct node_t get_lex_tokens(const char *__restrict p_filename) {
   /// Attempting to open the file.
   FILE *fptr = fopen(p_filename, "r");
   assert(fptr != NULL);
@@ -79,5 +79,5 @@ extern struct node_t *get_lex_tokens(const char *__restrict p_filename) {
     }
     l++;
   };
-  return 0;
+  return list;
 };

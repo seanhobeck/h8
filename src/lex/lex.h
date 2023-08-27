@@ -1,6 +1,6 @@
 /*
     @author: Sean Hobeck
-      @date: 08/23/23
+      @date: 08/26/23
  */
 #pragma once
 
@@ -26,4 +26,4 @@ void n_alloc_cpy(struct node_t **__restrict dst, struct node_t src);
 /*            @section: External Functions             */
 
 /// @note: Getting the linked list of lexed tokens in a file.
-extern struct node_t *get_lex_tokens(const char *__restrict p_filename);
+extern struct node_t get_lex_tokens(const char *__restrict p_filename);
