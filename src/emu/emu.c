@@ -17,6 +17,10 @@
 
 /// @note: The emulators memory.
 unsigned char memory[0x7FFF];
+/// @note: The emulators registers.
+unsigned long registers[0x7];
+/// @note: The emulators flags.
+unsigned char flags[0x5];
 
 /*            @section: Utility Functions              */
 
@@ -63,9 +67,9 @@ void i_alloc_cpy(struct instruction_t **__restrict ptr,
 
 extern void emulate_data(const struct node_t list) {
   /// The returned instruction tree.
-  struct instruction_t r =
+  struct instruction_t ll =
       *(struct instruction_t *)calloc(1ul, sizeof(struct instruction_t));
-  r.inst = -1;
+  ll.inst = -1;
 
   /// The previous line / instruction pointer.
   unsigned long p_ip = 1;
@@ -94,24 +98,23 @@ extern void emulate_data(const struct node_t list) {
         s_alloc(t.data[2], it.p_next->p_next->p_data);
       }
       /// Adding the instruction to the list of instructions.
-      if (r.inst == -1)
-        r = t;
+      if (ll.inst == -1)
+        ll = t;
       else {
         /// Temporary Loop
-        struct instruction_t o = r;
-        if (r.p_next == 0) {
-          i_alloc_cpy(&r.p_next, t);
+        struct instruction_t o = ll;
+        if (ll.p_next == 0) {
+          i_alloc_cpy(&ll.p_next, t);
           goto el;
         }
         struct instruction_t *p = &o;
         while (p->p_next != 0)
           p = p->p_next;
         i_alloc_cpy(&p->p_next, t);
-        r = o;
+        ll = o;
         goto el;
       }
     }
-
   el:
     /// Making the next iterator the first token on a new line.
     while (it.m_line == p_ip) {
@@ -123,8 +126,24 @@ extern void emulate_data(const struct node_t list) {
     p_ip = it.m_line;
   } while (p_ip != -1);
 
-/// We are now done sorting the data and we now have to process all of it.
-ds:
+  /// We are now done sorting the data and we now have to process all of it.
+  ds:
+  printf("Sorting Complete.\n");
+
+  /// Converting it to an array.
+  unsigned long h = 0;
+  struct instruction_t array[p_ip], p = ll;
+  while(p.p_next != 0) {
+    array[h] = p;
+    p = *p.p_next;
+    h++;
+  }
+  array[h] = p;
+
+  /// We now process all of the data.
+  for (unsigned long i = 0; i < p_ip; i++) {
+      /// Run each instruction....
+  }
 
   return;
 };
