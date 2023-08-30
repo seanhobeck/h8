@@ -27,12 +27,12 @@ enum e_flag {
 
 /*          @section: Emulator Functions           */
 
-/// @note: Loading data into a memory location.
-void load_memd(unsigned short loc, unsigned char data);
-/// @note: Getting the data from a memory location.
-unsigned char get_memd(unsigned short loc);
 /// @note: Getting the instruction from a string.
-signed get_inst(const char *p_str);
+signed get_inst(const char *__restrict p_str);
+/// @note: Getting the address & ext from a register, flag or address.
+signed long get_addr_ext(const char *__restrict p_str, char **__restrict ext);
+/// @note: Getting the absolute value of a string (if it is a register, flag, or address).
+signed long get_value(const char *__restrict p_str);
 
 /*          @section: Emulator Structure           */
 

@@ -15,4 +15,4 @@ purge: clean
 	rm -f $(TARGET)
 
 clean:
-	rm -f src/*.o src/lex/*.o
+	rm -f src/*.o src/lex/*.o src/emu/*.o

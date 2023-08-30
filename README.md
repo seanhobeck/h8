@@ -5,7 +5,7 @@ and is heavily inspired by jdh's 8-bit emulator. this is entirely just
 for fun and for practice.
 
 ## instruction set
-
+    0: ??? src, dst
     1: mov imm16/reg, imm16/reg     ; moving data from or to registers & memory.
     2: lda imm8, imm8/reg		; loading a byte of data into a register or memory.
     3: add imm16/reg, imm8/reg	; addition with registers & memory.
